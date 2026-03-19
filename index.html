@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css">
+    <title>Alex & Katerina Wedding</title>
+</head>
+<body>
+
+    <div class="mine">
+        <section class="name_blok reveal">
+            <div class="name">
+                <h2>Save</h2>
+                <h2 class="two">the</h2>
+                <h2>date</h2>
+            </div>
+            <h1>Alex & Katerina</h1>
+            <div class="name_img_blok">
+                <img src="img/1.png" alt="">
+                <img src="img/2.png" alt="">
+                <img src="img/3.png" alt="">
+            </div>
+            <div class="intro-text">
+                <p>Dear Friends And Family,</p>
+                <p>we invite you to our wedding</p>
+            </div>
+        </section>
+
+        <section class="venue_and_hours_blok reveal">
+            <h2>Venue And Hours</h2>
+            <div class="venue_and_hours_img_blok">
+                <div class="venue_and_hours_img_items">
+                    <img src="img/4.png" alt="">
+                    <h3>Tatev Monastery</h3>
+                    <p>Time 12:00</p>
+                </div>
+                <div class="venue_and_hours_img_items">
+                    <img src="img/5.png" alt="">
+                    <h3>EL Garden</h3>
+                    <p>Tsitsernakaberd park, building 8</p>
+                    <p>Time 18:00</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="dress_code_blok reveal">
+            <h2>Dress Code</h2>
+            
+            <div class="color_container">
+                <div class="color_row">
+                    <div class="color_blok_1 item"></div>
+                    <div class="color_blok_2 item"></div>
+                    <div class="color_blok_3 item"></div>
+                </div>
+                <div class="color_row">
+                    <div class="color_blok_4 item"></div>
+                    <div class="color_blok_5 item"></div>
+                </div>
+            </div>
+
+            <div class="photo-grid">
+                <div class="img_blok">
+                    <img src="img/6.png" alt="">
+                    <img src="img/7.png" alt="">
+                    <img src="img/8.png" alt="">
+                </div>
+                <div class="img_blok row-two">
+                    <img src="img/9.png" alt="">
+                    <img src="img/10.png" alt="">
+                </div>
+                <div class="img_blok">
+                    <img src="img/11.png" alt="">
+                    <img src="img/12.png" alt="">
+                    <img src="img/13.png" alt="">
+                </div>
+            </div>
+        </section>
+
+        <section class="thank_you_blok reveal">
+            <h2 class="two glowing-text">thank you</h2>
+            <img src="img/14.png" alt="" class="final-img">
+            <div class="outro-text">
+                <p>spend this beautiful day and</p>
+                <p>share your smiles with us</p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const observerOptions = { 
+            threshold: 0.05,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                } else {
+                    entry.target.classList.remove('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
