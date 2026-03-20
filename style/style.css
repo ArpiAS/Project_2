@@ -7,11 +7,6 @@
 }
 
 @font-face {
-    font-family: "ArmfrankensteinU";
-    src: url("../font/ArmfrankensteinU.ttf") format("truetype");
-}
-
-@font-face {
     font-family: "BastligaOne";
     src: url("../font/BastligaOne.ttf") format("truetype");
 }
@@ -29,7 +24,6 @@ body {
 }
 
 .mine {
-    min-width: 320px;
     max-width: 640px;
     margin: auto;
     position: relative;
@@ -53,19 +47,66 @@ body {
     }
 }
 
-/* --- REVEAL ԱՆԻՄԱՑԻԱ (ՆՐԲԱՑՎԱԾ) --- */
+/* --- GOLD DUST --- */
+.sparkle-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.sparkle {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #bda997;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #c6a98f;
+    opacity: 0;
+    animation: dustMove linear infinite;
+}
+
+@keyframes dustMove {
+    0% {
+        transform: translateY(0) scale(0);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.6;
+        transform: translateY(-100px) scale(1.1);
+    }
+
+    100% {
+        transform: translateY(-200px) scale(0);
+        opacity: 0;
+    }
+}
+
+/* --- REVEAL --- */
 .reveal {
     opacity: 0;
     transform: translateY(20px);
-    filter: blur(8px);
-    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
-    will-change: transform, opacity, filter;
+    transition: all 1s ease;
 }
 
 .reveal.active {
     opacity: 1;
     transform: translateY(0);
-    filter: blur(0);
+}
+
+.reveal img {
+    opacity: 0;
+    transform: scale(0.96);
+    transition: 0.8s ease;
+}
+
+.reveal.active img {
+    opacity: 1;
+    transform: scale(1);
 }
 
 /* --- HEADER --- */
@@ -86,6 +127,7 @@ body {
 .name h2 {
     font-size: 22px;
     font-weight: 100;
+    min-height: 28px;
 }
 
 .name .two {
@@ -98,6 +140,7 @@ h1 {
     font-size: clamp(28px, 9vw, 38px);
     margin-top: -35px;
     margin-bottom: 25px;
+    min-height: 45px;
 }
 
 .name_img_blok {
@@ -111,26 +154,14 @@ h1 {
 img {
     width: 100%;
     border-radius: 4px;
-    transition: transform 0.3s ease;
     display: block;
 }
 
-/* Touch Interaction */
-img:active {
-    transform: scale(0.96);
-    filter: brightness(0.9);
-}
-
-.intro-text p {
-    font-size: 19px;
-    color: #54514E;
-    margin: 2px 0;
-}
-
-/* --- VENUE --- */
-.venue_and_hours_blok h2,
-.dress_code_blok h2 {
+/* --- VENUE (ՈՒՂՂՎԱԾ CENTERING) --- */
+.venue_and_hours_blok h2 {
     text-align: center;
+    width: 100%;
+    display: block;
     color: #655444;
     font-size: 30px;
     margin: 40px 0 20px;
@@ -138,25 +169,28 @@ img:active {
 
 .venue_and_hours_img_blok {
     display: flex;
-    flex-direction: column;
-    gap: 30px;
-    padding: 0 20px;
+    flex-direction: row;
+    justify-content: center;
+    gap: 15px;
+    width: 95%;
+    margin: auto;
 }
 
 .venue_and_hours_img_items {
-    width: 100%;
+    width: 48%;
     text-align: center;
 }
 
 .venue_and_hours_img_items img {
     border-radius: 8px;
     margin-bottom: 12px;
+    width: 100%;
 }
 
 .venue_and_hours_img_items h3 {
     font-size: 23px;
     color: #54514E;
-    margin-bottom: 4px;
+    min-height: 25px;
 }
 
 .venue_and_hours_img_items p {
@@ -164,7 +198,21 @@ img:active {
     color: #54514E;
 }
 
-/* --- DRESS CODE (ՍԻՄԵՏՐԻԿ) --- */
+/* --- DRESS CODE --- */
+.dress_code_blok h2 {
+    width: 100%;
+    text-align: center;
+    color: #655444;
+    font-size: 30px;
+    margin: 40px 0 20px;
+}
+
+.item {
+    width: clamp(62px, 18vw, 84px);
+    height: 38px;
+    border-radius: 6px;
+}
+
 .color_container {
     display: flex;
     flex-direction: column;
@@ -178,17 +226,6 @@ img:active {
     justify-content: center;
     gap: 10px;
     width: 100%;
-}
-
-.item {
-    width: clamp(62px, 18vw, 84px);
-    height: 38px;
-    border-radius: 6px;
-    transition: transform 0.2s ease;
-}
-
-.item:active {
-    transform: scale(1.15);
 }
 
 .color_blok_1 {
@@ -211,6 +248,7 @@ img:active {
     background: #B5AFAF;
 }
 
+/* --- PHOTO GRID --- */
 .photo-grid {
     display: flex;
     flex-direction: column;
@@ -236,13 +274,16 @@ img:active {
     padding: 45px 20px;
     margin-top: 50px;
     text-align: center;
+    color: #fff;
 }
 
 .thank_you_blok .two {
     font-family: "BastligaOne";
     font-size: clamp(65px, 20vw, 110px);
-    color: #fff;
     margin-bottom: 15px;
+    min-height: 80px;
+    font-weight: lighter;
+
 }
 
 .final-img {
@@ -251,41 +292,54 @@ img:active {
     margin: 15px auto;
 }
 
+.intro-text p,
 .outro-text p {
     font-size: 19px;
     color: #54514E;
+    margin: 2px 0;
+    min-height: 22px;
+    width: 100%;
+    text-align: center;
 }
 
-.glowing-text {
-    animation: elegantGlow 3s ease-in-out infinite alternate;
+/* TYPE-TEXT FIX */
+.type-text {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
 }
 
-@keyframes elegantGlow {
-    from {
-        text-shadow: 0 0 5px rgba(255, 255, 255, 0);
+.venue_and_hours_blok .type-text,
+.thank_you_blok .type-text {
+    display: block;
+    width: 100%;
+}
+
+.type-text-left {
+    text-align: end;
+}
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 767px) {
+    .mine {
+        width: 100%;
     }
 
-    to {
-        text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    .name .two {
+        font-size: clamp(60px, 20vw, 95px);
     }
-}
 
-/* --- RESPONSIVE MEDIA QUERIES --- */
-@media screen and (min-width: 600px) {
+    h1 {
+        font-size: clamp(26px, 8vw, 34px);
+        margin-top: -25px;
+    }
+
     .venue_and_hours_img_blok {
-        flex-direction: row;
-        justify-content: space-between;
+        gap: 10px;
+        width: 98%;
     }
 
-    .venue_and_hours_img_items {
-        width: 48%;
-    }
-
-    img:hover {
-        transform: translateY(-5px);
-    }
-
-    .item:hover {
-        transform: scale(1.1);
+    .venue_and_hours_img_items h3 {
+        font-size: 18px;
     }
 }

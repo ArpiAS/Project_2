@@ -1,53 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hy">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <link rel="stylesheet" href="style/style.css?v=1.1">
+  <link rel="stylesheet" href="style/style.css?v=28.0">
   <title>Alex & Katerina Wedding</title>
 </head>
 
 <body>
 
+  <div class="sparkle-container"></div>
+
   <div class="mine">
     <section class="name_blok reveal">
       <div class="name">
-        <h2>Save</h2>
-        <h2 class="two">the</h2>
-        <h2>date</h2>
+        <h2 class="type-text" data-text="Save">Save</h2>
+        <h2 class="two type-text" data-text="the">the</h2>
+        <h2 class="type-text" data-text="date">date</h2>
       </div>
-      <h1>Alex & Katerina</h1>
+      <h1 class="type-text" data-text="Alex & Katerina">Alex & Katerina</h1>
       <div class="name_img_blok">
         <img src="img/1.png" alt="">
         <img src="img/2.png" alt="">
         <img src="img/3.png" alt="">
       </div>
       <div class="intro-text">
-        <p>Dear Friends And Family,</p>
-        <p>we invite you to our wedding</p>
+        <p class="type-text" data-text="Dear Friends And Family,">Dear Friends And Family,</p>
+        <p class="type-text" data-text="we invite you to our wedding">we invite you to our wedding</p>
       </div>
     </section>
 
     <section class="venue_and_hours_blok reveal">
-      <h2>Venue And Hours</h2>
+      <h2 class="type-text " data-text="Venue And Hours">Venue And Hours</h2>
       <div class="venue_and_hours_img_blok">
         <div class="venue_and_hours_img_items">
           <img src="img/4.png" alt="">
-          <h3>Tatev Monastery</h3>
-          <p>Time 12:00</p>
+          <h3 class="type-text type-text-left" data-text="Tatev Monastery">Tatev Monastery</h3>
+          <p class="type-text type-text-left" data-text="Time 12:00">Time 12:00</p>
         </div>
         <div class="venue_and_hours_img_items">
           <img src="img/5.png" alt="">
-          <h3>EL Garden</h3>
-          <p>Tsitsernakaberd park, building 8</p>
-          <p>Time 18:00</p>
+          <h3 class="type-text type-text-left" data-text="EL Garden">EL Garden</h3>
+          <p class="type-text type-text-left" data-text="Tsitsernakaberd park, building 8">Tsitsernakaberd park, building 8</p>
+          <p class="type-text type-text-left" data-text="Time 18:00">Time 18:00</p>
         </div>
       </div>
     </section>
 
     <section class="dress_code_blok reveal">
-      <h2>Dress Code</h2>
+      <h2 class="type-text" data-text="Dress Code">Dress Code</h2>
       <div class="color_container">
         <div class="color_row">
           <div class="color_blok_1 item"></div>
@@ -79,35 +81,53 @@
     </section>
 
     <section class="thank_you_blok reveal">
-      <h2 class="two glowing-text">thank you</h2>
+      <h2 class="two type-text" data-text="thank you">thank you</h2>
       <img src="img/14.png" alt="" class="final-img">
       <div class="outro-text">
-        <p>spend this beautiful day and</p>
-        <p>share your smiles with us</p>
+        <p class="type-text" data-text="spend this beautiful day and">spend this beautiful day and</p>
+        <p class="type-text" data-text="share your smiles with us">share your smiles with us</p>
       </div>
     </section>
   </div>
 
   <script>
-    // Օպտիմիզացված տարբերակ հեռախոսների համար
-    const observerOptions = {
-      threshold: 0,
-      rootMargin: "0px 0px -10% 0px"
-    };
+    const sparkleBox = document.querySelector('.sparkle-container');
+    for (let i = 0; i < 40; i++) {
+      const sp = document.createElement('div');
+      sp.className = 'sparkle';
+      sp.style.left = Math.random() * 100 + '%';
+      sp.style.top = Math.random() * 100 + '%';
+      sp.style.animationDuration = (Math.random() * 5 + 4) + 's';
+      sparkleBox.appendChild(sp);
+    }
+
+    function runTypewriter(el) {
+      const text = el.getAttribute('data-text');
+      if (!text) return;
+
+      el.innerText = '';
+      let i = 0;
+      const interval = setInterval(() => {
+        if (i < text.length) {
+          el.append(text.charAt(i));
+          i++;
+        } else { clearInterval(interval); }
+      }, 70);
+    }
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('active');
+          if (entry.target.classList.contains('type-text')) runTypewriter(entry.target);
         } else {
           entry.target.classList.remove('active');
+          if (entry.target.classList.contains('type-text')) entry.target.innerText = '';
         }
       });
-    }, observerOptions);
+    }, { threshold: 0.1 });
 
-    document.querySelectorAll('.reveal').forEach(el => {
-      observer.observe(el);
-    });
+    document.querySelectorAll('.reveal, .type-text').forEach(el => observer.observe(el));
   </script>
 </body>
 
