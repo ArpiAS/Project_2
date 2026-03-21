@@ -30,7 +30,7 @@ body {
     background: linear-gradient(135deg, #f3f2f0 0%, #d6c7b9 100%);
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
-    padding-bottom: 40px;
+
 }
 
 @keyframes gradientBG {
@@ -115,6 +115,7 @@ body {
     padding: 50px 0 30px;
     color: #fff;
     text-align: center;
+    min-height: 100vh;
 }
 
 .name {
@@ -149,6 +150,7 @@ h1 {
     gap: 10px;
     padding: 0 15px;
     margin-bottom: 30px;
+    z-index: 5;
 }
 
 img {
@@ -158,6 +160,7 @@ img {
 }
 
 /* --- VENUE (ՈՒՂՂՎԱԾ CENTERING) --- */
+
 .venue_and_hours_blok h2 {
     text-align: center;
     width: 100%;
@@ -165,6 +168,7 @@ img {
     color: #655444;
     font-size: 30px;
     margin: 40px 0 20px;
+    
 }
 
 .venue_and_hours_img_blok {
@@ -260,6 +264,7 @@ img {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 8px;
+    z-index: 50;
 }
 
 .img_blok.row-two {
@@ -275,6 +280,7 @@ img {
     margin-top: 50px;
     text-align: center;
     color: #fff;
+    min-height: 100vh;
 }
 
 .thank_you_blok .two {

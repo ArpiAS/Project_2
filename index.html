@@ -10,7 +10,7 @@
 
 <body>
 
-  <div class="sparkle-container"></div>
+  <!-- <div class="sparkle-container"></div> -->
 
   <div class="mine">
     <section class="name_blok reveal">
@@ -91,15 +91,15 @@
   </div>
 
   <script>
-    const sparkleBox = document.querySelector('.sparkle-container');
-    for (let i = 0; i < 40; i++) {
-      const sp = document.createElement('div');
-      sp.className = 'sparkle';
-      sp.style.left = Math.random() * 100 + '%';
-      sp.style.top = Math.random() * 100 + '%';
-      sp.style.animationDuration = (Math.random() * 5 + 4) + 's';
-      sparkleBox.appendChild(sp);
-    }
+    // const sparkleBox = document.querySelector('.sparkle-container');
+    // for (let i = 0; i < 40; i++) {
+    //   const sp = document.createElement('div');
+    //   sp.className = 'sparkle';
+    //   sp.style.left = Math.random() * 100 + '%';
+    //   sp.style.top = Math.random() * 100 + '%';
+    //   sp.style.animationDuration = (Math.random() * 5 + 4) + 's';
+    //   sparkleBox.appendChild(sp);
+    // }
 
     function runTypewriter(el) {
       const text = el.getAttribute('data-text');
